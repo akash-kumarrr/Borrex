@@ -2,11 +2,11 @@ from typing import List, Dict, Any
 from sqlalchemy import String, Enum as SQLEnum, JSON
 from sqlalchemy.orm import Mapped, mapped_column
 from source.models.base_model import BaseModel
-from source.models.schemas.item import *
+from source.models.schemas.item import VerificationStatus, ItemStatus, ItemCondition
 
 class Item(BaseModel):
     __tablename__ = "items"
-    
+
     owner_id: Mapped[str] = mapped_column(String, index=True)
     title: Mapped[str] = mapped_column(String(100))
     description: Mapped[str] = mapped_column(String(2000))

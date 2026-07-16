@@ -40,10 +40,10 @@ class LocationModel(BaseModel):
 
 
 class PricingModel(BaseModel):
-    dailyRate: int = Field(..., gt=0, description="Rate in cents (e.g., 1500 = $15.00)")
+    dailyRate: int = Field(..., gt=0, description="Rate in Rs. : ")
     weeklyRate: Optional[int] = Field(None, gt=0)
     securityDeposit: int = Field(0, ge=0)
-    currency: str = Field("USD", max_length=3)
+    currency: str = Field("INR", max_length=3)
     minimumRentalDays: int = Field(1, ge=1)
 
 

@@ -17,6 +17,7 @@ if config.config_file_name is not None:
 
 from source.models.base import Base
 from source.models.db import user
+from source.models.db import item, rent
 
 target_metadata = Base.metadata
 #target_metadata = None
