@@ -1,0 +1,11 @@
+run:
+	uv run uvicorn source.main:app --reload
+
+migration:
+	uv run alembic revision --autogenerate -m "$(msg)"
+
+upgrade:
+	uv run alembic upgrade head
+
+test:
+	uv run pytest
