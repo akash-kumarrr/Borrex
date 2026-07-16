@@ -11,3 +11,4 @@ class User(BaseModel):
     username : Mapped[str] = mapped_column(String(30), unique=True, nullable=False)
     fullname : Mapped[str] = mapped_column(String(50), nullable=False)
     hashed_password : Mapped[str] = mapped_column(String(256), nullable=False)
+    contact_number : Mapped[str] = mapped_column(String(10), nullable=True)
