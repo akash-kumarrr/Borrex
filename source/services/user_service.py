@@ -16,4 +16,13 @@ class AuthService :
         username_existsing = await self.user_repository.username_exists(user.username)
         if username_existsing:
             raise HTTPException(status_code=400, detail="Username already exists.")
-        return await self.user_repository
+        
+        hashed_password = hash_password(user.password)
+        
+        user = User(
+            email=user.email,
+            full_name=user.full_name,
+            password_hash=hashed_password,
+            contact_number=user.contact_number,
+            username = user.username
+        )

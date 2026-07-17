@@ -1,28 +1,16 @@
-from fastapi import APIRouter, status, HTTPException
+from fastapi import APIRouter, Depends
 
-from sqlalchemy.ext.asyncio import AsyncSession
+from source.api.dependencies.auth import get_user_service
+from source.models.schemas.user import UserCreate, UserResponse
+from source.services.user_service import UserService
 
-from source.models.schemas.user import UserCreate, TokenResponse, UserLoginViaEmail, UserCreateResponse
+router = APIRouter(prefix="/auth", tags=["Auth"])
 
-router = APIRouter(
-    prefix="/user-auth",
-    tags=["User Authentification"]
-)
 
-@router.post("/register", response_model=UserCreateResponse, status_code=status.HTTP_201_CREATED)
-async def register(user : UserCreate):
-    try :
-        return user
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    except HTTPException:
-        raise
-
-@router.post("/user-login", response_model=TokenResponse, status_code=status.HTTP_200_OK)
-async def login(credentials : UserLoginViaEmail):
-    try:
-        print("under-development")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    except HTTPException:
-        raise
+@router.post("/register", response_model=UserResponse)
+async def register(
+    data: UserCreate,
+    service: UserService = Depends(get_user_service),
+):
+    user = await service.register(data)
+    return user
