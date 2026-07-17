@@ -55,3 +55,7 @@ class UserCreateResponse(BaseModel):
     fullname : str
     created_at : datetime
     updated_at : datetime
+
+class TokenResponse(BaseModel):
+    access_token : str
+    token_type : str = "Bearer"
