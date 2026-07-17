@@ -10,7 +10,10 @@ class Settings(BaseSettings):
     secret_key : str
     debug : bool = True
 
-    algorithm : str = "HS256"
+    token_algorithm : str = "HS256"
+    token_expire_minutes = 1440
+    jwt_secret_key : str
+
     model_config = SettingsConfigDict(
         env_file = ".env",
         env_file_encoding="utf-8",
