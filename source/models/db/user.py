@@ -12,3 +12,4 @@ class User(BaseModel):
     fullname : Mapped[str] = mapped_column(String(50), nullable=False)
     hashed_password : Mapped[str] = mapped_column(String(256), nullable=False)
     contact_number : Mapped[str] = mapped_column(String(10), nullable=True)
+    status : Mapped[bool] = mapped_column(bool)

@@ -16,3 +16,10 @@ class UserRepository(BaseRepository[User]):
         query = select(exists().where(User.email == email))
         return self.db.scalar(query)
     
+    async def get_by_username(self, username : str) -> User | None :
+        query = select(User).where(User.username == username)
+        result = await self.db.execute(query)
+        return result.scalar_one_or_none
+    
+    
+    
